@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
+import FAB from './FAB'
 
 const Alarm = () => {
   return (
+    <>
     <div className='flex-1 m-4 '>
         <Card 
         time={"5:00"}
@@ -9,7 +11,13 @@ const Alarm = () => {
         date={"Mon, Tue"}
         enabled={true}
         />
+        
     </div>
+    <FAB 
+        icon={"add"}
+    />
+    </>
+    
   )
 }
 
