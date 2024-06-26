@@ -1,13 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import StatusBar from './components/StatusBar'
+import BottomBar from './components/BottomBar'
+import Alarm from './components/Alarm'
 
 const App = () => {
-  return (<div>
-    <div class="box-border m-auto h-dvh w-1/4 p-1 
-                border-8 bg-black">
-      < StatusBar></StatusBar>
+  return (  
+    <div class="bg-white border-cyan-900 h-dvh w-dvw flex flex-col">
+      <StatusBar></StatusBar>
+      <Alarm></Alarm>
+      <BottomBar></BottomBar>
     </div>
-  </div>
     
   )
 }
