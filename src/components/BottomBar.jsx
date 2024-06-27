@@ -31,7 +31,7 @@ const BottomBar = () => {
 
 const BottomBarElement = ({icon, label}) => {
     return (
-                <a href='#' class="flex items-center flex-col"    >
+                <a href='#' className="flex items-center flex-col"    >
                     <div className="material-icons px-2 pt-2 w-fit">{icon}</div>
                     <p className=''>{label}</p>
                 </a>  
