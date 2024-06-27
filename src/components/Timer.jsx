@@ -4,7 +4,14 @@ const Timer = () => {
   return (
     <div className='flex-1 m-4'>
         <div className='m-4'>
-            <div className="timer"></div>
+            <div className="timer mb-4 flex items-end w-full justify-center">
+                <div className="text-5xl">00</div>
+                <div className="">h</div>
+                <div className=" text-5xl">00</div>
+                <div className="">m</div>
+                <div className=" text-5xl">00</div>
+                <div className="">s</div>
+            </div>
             <div className=" grid grid-cols-3 place-items-center">
                 <TimerButton 
                     text= {1}
