@@ -12,7 +12,8 @@ import Stopwatch from './components/Stopwatch';
 
 const App = () => {
   return (  
-    <div class="bg-white border-cyan-900 h-dvh w-dvw flex flex-col">
+    <div className="w-dvw h-dvh flex overflow-hidden z-10 justify-center">
+    <div class=" bg-white box-content border-4 w-80 relative my-10 border-cyan-900 flex flex-col">
       <StatusBar></StatusBar>
       <TopAppBar/>
       <Routes>
@@ -24,7 +25,7 @@ const App = () => {
       </Routes>
       <BottomBar></BottomBar>
     </div>
-    
+    </div>
   )
 }
 
