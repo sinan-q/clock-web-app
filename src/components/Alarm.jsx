@@ -4,13 +4,31 @@ import FAB from './FAB'
 const Alarm = () => {
   return (
     <>
-    <div className='flex-1 m-4 '>
+    <div className='flex-1 overflow-auto pt-4 px-4'>
         <Card 
         time={"5:00"}
         am={true}
         date={"Mon, Tue"}
         enabled={true}
         />
+        <Card 
+        time={"5:00"}
+        am={true}
+        date={"Mon, Tue"}
+        enabled={true}
+        />
+        <Card 
+        time={"5:00"}
+        am={true}
+        date={"Mon, Tue"}
+        enabled={true}
+        />
+        <Card 
+        time={"5:00"}
+        am={true}
+        date={"Mon, Tue"}
+        enabled={true}
+        />  
         
     </div>
     <FAB 
