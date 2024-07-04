@@ -22,7 +22,7 @@ const TopAppBar = () => {
   }, [location.pathname]);
 
   return (
-    <div className='flex justify-between p-4'>
+    <div className='flex justify-between pt-4 pb-1 px-4'>
         <div className=' text-xl'>{title}</div>
         <div className="dropdown relative">
         <div className='material-icons'>more_vert</div>

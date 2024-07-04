@@ -29,6 +29,12 @@ const Alarm = () => {
         date={"Mon, Tue"}
         enabled={true}
         />  
+        <Card 
+        time={"5:00"}
+        am={true}
+        date={"Mon, Tue"}
+        enabled={true}
+        />  
         
     </div>
     <FAB 
