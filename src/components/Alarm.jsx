@@ -2,6 +2,7 @@ import React,{useState , useEffect} from 'react'
 import FAB from './FAB'
 
 const Alarm = () => {
+    const [dialogState, setDialogState] = useState(false)
     useEffect(() => {
         var radius = 72
         var dot_num = 360 / document.querySelectorAll('.dot').length
@@ -12,7 +13,7 @@ const Alarm = () => {
             val.style.top = Top + 'px'
             val.style.left = Left + 'px'
     })
-    }, [])
+    }, [dialogState])
   return (
     <>
     <div className='flex-1 overflow-auto pt-4 px-4'>
@@ -48,10 +49,15 @@ const Alarm = () => {
         />  
         
     </div>
-    <TimePicker/>
+    {dialogState && <TimePicker
+        onCancel = {() => {setDialogState(false)}}
+        onClick = {() => {setDialogState(false)}}
+    />}
     <FAB 
         icon={"add"}
-        onClic={() => {}}
+        onClic={() => {
+            setDialogState(true)
+        }}
     />
     </>
     
@@ -90,7 +96,7 @@ const Card = ({time, am, date, enabled}) => {
     </div>)
 }
 
-const TimePicker = () => {
+const TimePicker = ({onCancel, onClick}) => {
     return (
         <div className="absolute top-1/2 left-1/2 z-20 bg-white -translate-x-1/2 -translate-y-1/2 px-4 border rounded-2xl">
             <div className="text-xs ms-4 my-2">Select time</div>
@@ -108,7 +114,7 @@ const TimePicker = () => {
                 <div class="origin w-2 h-2 bg-brown-500 rounded-lg absolute top-1/2 left-1/2 -mt-1 -ml-1"></div>
                 <div class="dot_box">
                      {[6,5,4,3,2,1,12,11,10,9,8,7].map((num) => (
-                        <div class="dot w-1 h-1 absolute text-sm leading-none">{num}</div>
+                        <div class="dot w-1 h-1 absolute text-sm leading-none" key={num}>{num}</div>
                      ))}
                         
                      
@@ -118,8 +124,8 @@ const TimePicker = () => {
 
             </div>
             <div className="flex justify-end gap-2 m-4">
-                <div className="text-sm">Cancel</div>
-                <div className="text-sm">OK</div>
+                <button onClick={onCancel} className="text-sm">Cancel</button>
+                <button onClick={onClick} className="text-sm">OK</button>
             </div>
         </div>
     )
