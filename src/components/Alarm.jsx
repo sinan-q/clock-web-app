@@ -3,17 +3,9 @@ import FAB from './FAB'
 
 const Alarm = () => {
     const [dialogState, setDialogState] = useState(false)
-    useEffect(() => {
-        var radius = 72
-        var dot_num = 360 / document.querySelectorAll('.dot').length
-        var ahd = dot_num * Math.PI / 180
-        document.querySelectorAll('.dot').forEach(function (val, index) {
-            var Top = 90 + Math.cos((ahd * index)) * radius
-            var Left = 90 + Math.sin((ahd * index)) * radius
-            val.style.top = Top + 'px'
-            val.style.left = Left + 'px'
-    })
-    }, [dialogState])
+   
+
+    
   return (
     <>
     <div className='flex-1 overflow-auto pt-4 px-4'>
@@ -68,6 +60,7 @@ export default Alarm
 
 const Card = ({time, am, date, enabled}) => {
     const [user,setUser] = useState(enabled)
+    
     return (
     <div className='pt-2 px-4 border mb-2 bg-brown-100 rounded-xl flex justify-between'>
         <div className='mb-2'>
@@ -97,13 +90,29 @@ const Card = ({time, am, date, enabled}) => {
 }
 
 const TimePicker = ({onCancel, onClick}) => {
+    const [isHour, setIsHour] = useState(true)
+    const [hour, sethour] = useState(12)
+    const [minute, setminute] = useState(30)
+
+    
+    useEffect(() => {
+        var radius = 72
+        var dot_num = 360 / document.querySelectorAll('.dot').length
+        var ahd = dot_num * Math.PI / 180
+        document.querySelectorAll('.dot').forEach(function (val, index) {
+            var Top = 90 + Math.cos((ahd * index)) * radius
+            var Left = 90 + Math.sin((ahd * index)) * radius
+            val.style.top = Top + 'px'
+            val.style.left = Left + 'px'
+    })
+    }, [isHour])
     return (
-        <div className="absolute top-1/2 left-1/2 z-20 bg-white -translate-x-1/2 -translate-y-1/2 px-4 border rounded-2xl">
+        <div className="absolute top-1/2 left-1/2 z-20 bg-white -translate-x-1/2 -translate-y-1/2 px-4 border rounded-2xl shadow-black shadow-2xl">
             <div className="text-xs ms-4 my-2">Select time</div>
             <div className=" inline-flex">
-                <div className="text-4xl ms-2 px-3 py-2 border w-fit rounded-xl bg-gray-700" >03</div>
+                <button onClick={() => {setIsHour(true)}} className={`text-4xl ms-2 px-3 py-2 border w-fit rounded-xl ${ isHour &&'bg-gray-700'}`} >{hour}</button>
                 <div className="text-4xl py-2 w-fit" >:</div>
-                <div className="text-4xl me-2 px-3 py-2 border w-fit rounded-xl bg-gray-700" >03</div>
+                <button onClick={() => {setIsHour(false)}} className={`text-4xl me-2 px-3 py-2 border w-fit rounded-xl ${ !isHour &&'bg-gray-700'}`}  >{minute}</button>
                 <div className="">
                     <div className="border rounded-t-md text-xs border-black p-1.5">a.m.</div>
                     <div className="border rounded-b-md text-xs border-black p-1.5">p.m.</div>
@@ -113,14 +122,17 @@ const TimePicker = ({onCancel, onClick}) => {
             <div class="box border relative rounded-full border-orange-100 my-4 w-48 h-48" id="clock">
                 <div class="origin w-2 h-2 bg-brown-500 rounded-lg absolute top-1/2 left-1/2 -mt-1 -ml-1"></div>
                 <div class="dot_box">
-                     {[6,5,4,3,2,1,12,11,10,9,8,7].map((num) => (
-                        <div class="dot w-1 h-1 absolute text-sm leading-none" key={num}>{num}</div>
-                     ))}
+                     {isHour ? [6,5,4,3,2,1,12,11,10,9,8,7].map((num) => (
+                        <button onClick={() => sethour(num)} class="dot w-5 h-5 absolute text-sm leading-none rounded-3xl" style={{backgroundColor: `${ hour === num  ? 'brown' : "transparent"}`}} key={num}>{num}</button>
+                     )) :
+                     [30,25,20,15,10,5,0,55,50,45,40,35].map((num) => (
+                        <button onClick={() => setminute(num)} class="dot w-5 h-5 absolute text-sm leading-none rounded-3xl" style={{backgroundColor: `${ minute === num  ? 'brown' : "transparent"}`}} key={num}>{num}</button>
+                     )) }
                         
                      
                    
                 </div>
-                <div class="hour_line absolute z-20 w-16 h-1 top-1/2 left-1/2 bg-black rounded-sm origin-left -mt-0.5 " id="hour_line"></div>
+                <div class="hour_line absolute z-20 w-16 h-1 top-1/2 left-1/2 bg-black rounded-sm origin-left -mt-0.5" style={{transform: `rotate(${isHour ? (hour - 3)*30 : (minute-15)*6}deg)`}} id="hour_line"></div>
 
             </div>
             <div className="flex justify-end gap-2 m-4">
