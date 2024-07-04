@@ -14,3 +14,8 @@
     display: flex;
     flex-direction: column;
 }
+
+.hour_line {
+    transform: rotate( 120deg);
+}
+
