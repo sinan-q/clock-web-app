@@ -6,18 +6,16 @@ const Clock = () => {
     const [time, setTime] = useState("loading")
     const [timeam, setTimeam] = useState("")
     const [date, setDate] = useState("loading")
-
-
-    useEffect(() => {
-
-        setInterval(() => {
-    
+    const setDates = () => {
             const dateObject = moment()  
             setTimeam(dateObject.format('a'))
             setTime( dateObject.format(' h:mm'))
             setDate(dateObject.format('ddd, d MMM'))
-        }, 1000)
-    
+    }
+
+    useEffect(() => {
+        setDates()
+        setInterval(() => setDates, 60000)
       }, [])
   return (
     <>
