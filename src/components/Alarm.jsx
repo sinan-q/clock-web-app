@@ -93,6 +93,8 @@ const TimePicker = ({onCancel, onClick}) => {
     const [isHour, setIsHour] = useState(true)
     const [hour, sethour] = useState(12)
     const [minute, setminute] = useState(30)
+    const [isAm, setIsAm] = useState(true)
+
 
     
     useEffect(() => {
@@ -114,8 +116,8 @@ const TimePicker = ({onCancel, onClick}) => {
                 <div className="text-4xl py-2 w-fit" >:</div>
                 <button onClick={() => {setIsHour(false)}} className={`text-4xl me-2 px-3 py-2 border w-fit rounded-xl ${ !isHour &&'bg-gray-700'}`}  >{minute}</button>
                 <div className="">
-                    <div className="border rounded-t-md text-xs border-black p-1.5">a.m.</div>
-                    <div className="border rounded-b-md text-xs border-black p-1.5">p.m.</div>
+                    <button onClick={() => {setIsAm(true)}} className={`border rounded-t-md text-xs border-black p-1.5 ${isAm && 'bg-green-400 text-white'} `}>a.m.</button>
+                    <button onClick={() => {setIsAm(false)}} className={`border rounded-b-md text-xs border-black p-1.5 ${!isAm && 'bg-green-400 text-white'}`}>p.m.</button>
 
                 </div>
             </div>
