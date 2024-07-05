@@ -98,7 +98,7 @@ const TimePicker = ({onCancel, onClick}) => {
     const ahd = 30 * Math.PI / 180
 
     return (
-        <div className="absolute top-1/2 left-1/2 z-20 bg-white -translate-x-1/2 -translate-y-1/2 px-4 border rounded-2xl shadow-black shadow-2xl">
+        <div className=" absolute top-1/2 left-1/2 z-20 bg-white -translate-x-1/2 -translate-y-1/2 px-4 border rounded-2xl shadow-black shadow-2xl">
             <div className="text-xs ms-4 my-2">Select time</div>
             <div className=" inline-flex">
                 <button onClick={() => {setIsHour(true)}} className={`text-4xl ms-2 px-3 py-2 border w-fit rounded-xl ${ isHour &&'bg-gray-700'}`} >{hour < 10 && "0"}{hour}</button>
@@ -123,7 +123,7 @@ const TimePicker = ({onCancel, onClick}) => {
                      
                    
                 </div>
-                <div class="hour_line absolute z-20 w-16 h-1 top-1/2 left-1/2 bg-black rounded-sm origin-left -mt-0.5" style={{transform: `rotate(${isHour ? (hour - 3)*30 : (minute-15)*6}deg)`}} id="hour_line"></div>
+                <div class="hour_line transition-all absolute z-20 w-16 h-1 top-1/2 left-1/2 bg-black rounded-sm origin-left -mt-0.5" style={{transform: `rotate(${isHour ? (hour - 3)*30 : (minute-15)*6}deg)`}} id="hour_line"></div>
 
             </div>
             <div className="flex justify-end gap-2 m-4">
