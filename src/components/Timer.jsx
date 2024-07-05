@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import FAB from './FAB'
 
 const Timer = () => {
     const [timer, setTimer] = useState([0,0,0,0,0,0])
@@ -97,6 +98,9 @@ const Timer = () => {
                 />
             </div>
         </div>
+        {timer.some((num) => num!=0) && <FAB
+            icon={"play_arrow"}
+        />}
     </div>
   )
 }
