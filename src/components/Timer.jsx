@@ -35,7 +35,7 @@ const Timer = () => {
                 <div className=" text-5xl">{timer[4]}{timer[5]}</div>
                 <div className="">s</div>
             </div>
-            <div className=" grid grid-cols-3 place-items-center">
+            <div className=" grid grid-cols-3 place-items-center mx-6">
                 <TimerButton 
                     text= {1}
                     onClick = {()=>{setTime(1)}}
@@ -106,6 +106,6 @@ export default Timer
 
 const TimerButton = ({text, onClick}) => {
   return (
-    <button onClick={onClick} className='border rounded-full text-center content-center h-16 w-16 text-white  bg-brown-600 '>{text}</button>
+    <button onClick={onClick} className='border rounded-full text-center content-center h-16 w-16 text-white  bg-brown-600 hover:bg-brown-400 active:text-xl '>{text}</button>
   )
 }
