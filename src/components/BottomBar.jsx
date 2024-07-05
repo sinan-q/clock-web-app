@@ -43,7 +43,7 @@ const BottomBar = () => {
 const BottomBarElement = ({icon, label, route}) => {
     return (
                 <Link to={route} className="flex items-center flex-col"    >
-                    <div className="material-icons px-2 w-fit">{icon}</div>
+                    <div className="material-icons px-3 w-fit text-base hover:bg-brown-300 rounded-xl">{icon}</div>
                     <p className=' text-xs'>{label}</p>
                 </Link>  
     
