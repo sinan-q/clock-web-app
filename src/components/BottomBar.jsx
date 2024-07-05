@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const BottomBar = () => {
   return (
-    <div className='fixed bottom-11 bg-white w-80 flex gap-2 justify-center py-2 px-5'>
+    <div className='fixed pb-5 bg-secondary-container bottom-11 w-80 flex justify-center py-1 px-5'>
             <BottomBarElement
               icon={"alarm"}
               label={"Alarm"}
@@ -17,7 +17,7 @@ const BottomBar = () => {
 
             />
             <BottomBarElement
-              icon={"hourglass_bottom"}
+              icon={"hourglass_empty"}
               label={"Timer"}
               route = {"/timer"}
 
@@ -42,9 +42,9 @@ const BottomBar = () => {
 
 const BottomBarElement = ({icon, label, route}) => {
     return (
-                <Link to={route} className="flex items-center flex-col"    >
-                    <div className="material-icons px-3 w-fit text-base hover:bg-brown-300 rounded-xl">{icon}</div>
-                    <p className=' text-xs'>{label}</p>
+                <Link to={route} className="flex items-center mx-1 font-medium hover:font-semibold flex-col"    >
+                    <div className="material-icons-outlined px-4 w-fit text-base hover:bg-brown-100 rounded-xl">{icon}</div>
+                    <p className=' text-xs '>{label}</p>
                 </Link>  
     
     )

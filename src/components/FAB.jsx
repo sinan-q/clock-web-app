@@ -2,9 +2,9 @@ import React from 'react'
 
 const FAB = ({icon , onClic = ()=> {}}) => {
   return (
-    <div class="flex fixed fab bottom-28 justify-end">
-            <button onClick={onClic} className="material-icons bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-4 rounded-2xl shadow-lg">
-                {icon}
+    <div class="flex fixed fab bottom-32 justify-end ">
+            <button onClick={onClic} className="material-icons shadow-brown-200 shadow-md  bg-purple-50 hover:bg-brown-200 text-black py-4 px-4 rounded-2xl">
+                {icon} 
             </button>
     </div>
   )
