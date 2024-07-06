@@ -2,48 +2,37 @@ import React,{useState , useEffect} from 'react'
 import FAB from './FAB'
 
 const Alarm = () => {
-    const [dialogState, setDialogState] = useState(false)
-   
+    const [dialogState, setDialogState] = useState(false);
+    const [list, setList] = useState([<Card 
+        time={"5:40"}
+        am={true}
+        date={"Mon"}
+        enabled={true}
+        />, <Card 
+        time={"5:40"}
+        am={true}
+        date={"Mon"}
+        enabled={true}
+        />]);
+
 
     
   return (
     <>
     <div className='flex-1 overflow-auto pt-4 px-4'>
-        <Card 
-        time={"5:40"}
-        am={true}
-        date={"Mon"}
-        enabled={true}
-        />
-        <Card 
-        time={"5:00"}
-        am={true}
-        date={"Mon, Tue"}
-        enabled={true}
-        />
-        <Card 
-        time={"5:00"}
-        am={true}
-        date={"Mon, Tue"}
-        enabled={true}
-        />
-        <Card 
-        time={"5:00"}
-        am={true}
-        date={"Mon, Tue"}
-        enabled={true}
-        />  
-        <Card 
-        time={"5:00"}
-        am={true}
-        date={"Mon, Tue"}
-        enabled={true}
-        />  
-        
+        {list} 
     </div>
     {dialogState && <TimePicker
         onCancel = {() => {setDialogState(false)}}
-        onClick = {() => {setDialogState(false)}}
+        onClick = {(hour,minute,isAm) => {
+            setDialogState(false)
+            setList([...list, <Card
+                time={`${hour}:${minute}`}
+                am={isAm}
+                date={"Mon, Tue"}
+                enabled={true}
+            />])
+        }}
     />}
     <FAB 
         icon={"add"}
@@ -128,7 +117,7 @@ const TimePicker = ({onCancel, onClick}) => {
             </div>
             <div className="flex justify-end gap-2 m-4">
                 <button onClick={onCancel} className="text-sm">Cancel</button>
-                <button onClick={onClick} className="text-sm">OK</button>
+                <button onClick={() => { onClick(hour, minute, isAm) }} className="text-sm">OK</button>
             </div>
         </div>
     )
