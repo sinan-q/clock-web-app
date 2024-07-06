@@ -27,16 +27,16 @@ const Timer = () => {
     }
   return (
     <div className='flex-1 m-4'>
-        <div className='m-4'>
-            <div className="timer mb-4 flex items-end w-full justify-center">
+        <div className=''>
+            <div className="timer my-8 flex items-end w-full justify-center">
                 <div className="text-5xl">{timer[0]}{timer[1]}</div>
-                <div className="">h</div>
+                <div className="text-sm me-2 pb-1">h</div>
                 <div className=" text-5xl">{timer[2]}{timer[3]}</div>
-                <div className="">m</div>
+                <div className="text-sm me-2 pb-1">m</div>
                 <div className=" text-5xl">{timer[4]}{timer[5]}</div>
-                <div className="">s</div>
+                <div className="text-sm pb-1">s</div>
             </div>
-            <div className=" grid grid-cols-3 place-items-center mx-6">
+            <div className=" grid grid-cols-3 place-items-center mt-6 mx-6">
                 <TimerButton 
                     text= {1}
                     onClick = {()=>{setTime(1)}}
@@ -110,6 +110,6 @@ export default Timer
 
 const TimerButton = ({text, onClick}) => {
   return (
-    <button onClick={onClick} className='border rounded-full text-center content-center h-16 w-16 text-white  bg-brown-600 hover:bg-brown-400 active:text-xl '>{text}</button>
+    <button onClick={onClick} className='border text-lg font-normal rounded-full text-center content-center h-20 w-20 text-white  bg-brown-400 hover:bg-brown-600 active:text-2xl '>{text}</button>
   )
 }

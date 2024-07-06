@@ -18,8 +18,8 @@ const Stopwatch = () => {
     return (
 
         <>
-        <div className='flex-1 m-4 flex flex-col items-center justify-center '>
-            <div className="border-8 border-gray-600 w-64 h-64 content-center rounded-full  ">
+        <div className='flex-1 m-4 flex flex-col items-center mt-20 '>
+            <div className="border-8 border-gray-400 w-64 h-64 content-center rounded-full  ">
                 <div className=" text-center text-6xl">{timer/1000|0}</div>
                 <div className=" text-center leading-3 pl-8 text-3xl  ">{timer%1000 /10 |0}</div>
             </div>
