@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 const BottomBar = () => {
   return (
-    <div className='fixed pb-5 bg-secondary-container bottom-11 w-80 flex justify-center py-1 px-5'>
+    <div className='fixed bg-secondary-container bottom-11 w-80  pt-1 px-5'>
+      <div className="flex pb-4 justify-center">
             <BottomBarElement
               icon={"alarm"}
               label={"Alarm"}
@@ -34,6 +35,11 @@ const BottomBar = () => {
               route = {"/bedtime"}
 
             />
+      </div>
+      <div className='w-full h-1 pb-3'>
+        <div className="w-24 h-1 rounded-xl m-auto bg-black "> </div>
+      </div>
+            
             
 
     </div>
