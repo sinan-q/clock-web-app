@@ -4,16 +4,21 @@ import moment from 'moment/moment';
 
 const Timer = () => {
     const [timers, setTimers] = useState([]);
+    const [addTimer, setAddTimer] = useState(true)
     
     const toSeconds = (num1, num2, power) => (num1 * 10 + num2) * (60 ** power)
-    const buttonClick = (t) => {
+    const handleAddtimer = () => setAddTimer(!addTimer)
 
+    const buttonClick = (t) => {
          let totalseconds =toSeconds(t[0], t[1], 2)+ toSeconds(t[2] ,t[3], 1)+ toSeconds(t[4],t[5],0)
          setTimers([...timers, totalseconds])
+         handleAddtimer()
     }
+
     return (<>
-             {timers.length !== 0 ? <TimerHome
+             {!addTimer ? <TimerHome
                 timers={timers}
+                onClick ={ handleAddtimer}
              /> : <TimerAdd
                 setTimers={buttonClick}
             />  }
@@ -72,7 +77,7 @@ const TimerAdd = ({setTimers}) => {
   )
 }
 
-const TimerHome = ({timers}) => {
+const TimerHome = ({timers , onClick}) => {
     return (
         <>
             {timers.map((timer) => 
@@ -82,6 +87,7 @@ const TimerHome = ({timers}) => {
             )}
             <FAB
                 icon={"add"}
+                onClic={onClick}
             />
         </>
     )
