@@ -4,11 +4,13 @@ import moment from 'moment/moment'
 
 const StatusBar = () => {
   const [time, setTime] = useState("loading")
-  const setDates = () => setTime( moment().format(' h:mm'))
+    
 
   useEffect(() => {
-    setDates()
-    setInterval(() => setDates, 60000)
+    (function clock() {
+      setTime( moment().format(' h:mm'))
+      setTimeout(clock, 60000);
+    })();
   }, [])
   
   return (
