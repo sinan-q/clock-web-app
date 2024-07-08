@@ -5,7 +5,7 @@ My first project with React Framework. A beautiful Clock & Alarm app inspired by
 
 ## Try Now 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/927e5e1d-4e2e-4168-be1d-a23766609c8b/deploy-status)](https://app.netlify.com/sites/sinan-q/deploys)
-* Hosted on Netlify: https://sinan-q.netlify.app/alarm
+* Hosted on Netlify: https://sinan-q.netlify.app
 ## Features
 * Beautiful UI
 * Hover animations
