@@ -62,7 +62,7 @@ const Card = ({time, am, date, enabled}) => {
         </div>
         <div className='flex flex-col justify-between'>
             <div className=' self-end'>
-                <button type="button" class= "justify-center h-5 w-5 text-black border-black hover:bg-brown-800 focus:ring-4 focus:outline-none focus:ring-brown-300 rounded-full text-sm item-centre inline-flex   dark:hover:bg-blue-700 dark:focus:ring-blue-800" >
+                <button type="button" class= "justify-center h-5 w-5 text-black border-black hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 rounded-full text-sm item-centre inline-flex   dark:hover:bg-blue-700 dark:focus:ring-blue-800" >
                     <div className='material-icons align-middle mt-1  relative bottom-0.5 text-sm'>arrow_drop_down</div>
                 </button>
             </div>
@@ -71,7 +71,7 @@ const Card = ({time, am, date, enabled}) => {
                     <input type="checkbox" onChange={
                         () => { setUser(!user)}
                     } value="" class="sr-only peer" checked={user} ></input>
-                    <div class="relative w-9 h-5 bg-brown-500 rounded-full dark:bg-gray-700 peer-checked:after:translate-x-full  peer-checked:after:border-white after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-brown-600"></div>
+                    <div class="relative w-9 h-5 bg-slate-500 rounded-full dark:bg-gray-700 peer-checked:after:translate-x-full  peer-checked:after:border-white after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-slate-600"></div>
                 </label>
             </div>
         </div>
@@ -100,7 +100,7 @@ const TimePicker = ({onCancel, onClick}) => {
                 </div>
             </div>
             <div class="box border relative rounded-full border-orange-100 my-4 w-48 h-48" id="clock">
-                <div class="origin w-2 h-2 bg-brown-500 rounded-lg absolute top-1/2 left-1/2 -mt-1 -ml-1"></div>
+                <div class="origin w-2 h-2 bg-slate-500 rounded-lg absolute top-1/2 left-1/2 -mt-1 -ml-1"></div>
                 <div class="dot_box">
                      {isHour ? [6,5,4,3,2,1,12,11,10,9,8,7].map((num, index) => (
                         <button onClick={() => sethour(num)} class="dot w-5 h-5 absolute text-sm leading-none rounded-3xl" style={{backgroundColor:  hour === num  ? 'brown' : "transparent", top: 90 + Math.cos((ahd * index)) * radius+"px", left: 90 + Math.sin((ahd * index)) * radius + "px" }} key={num}>{num}</button>

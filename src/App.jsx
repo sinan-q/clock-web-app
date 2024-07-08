@@ -15,7 +15,7 @@ const App = () => {
       <StatusBar></StatusBar>
       <TopAppBar/>
       <PageRoutes/>
-      <BottomBar></BottomBar>
+      <BottomBar />
     </div>
     </div>
   )

@@ -55,6 +55,6 @@ export default Timer
 
 const TimerButton = ({text, onClick}) => {
   return (
-    <button onClick={onClick} className='border text-lg font-normal rounded-full text-center content-center h-20 w-20 text-white  bg-brown-400 hover:bg-brown-600 active:text-2xl '>{text}</button>
+    <button onClick={onClick} className='border text-lg font-normal rounded-full text-center content-center h-20 w-20 text-white bg-slate-400 hover:bg-slate-600 active:text-2xl '>{text}</button>
   )
 }
