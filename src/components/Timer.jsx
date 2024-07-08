@@ -11,7 +11,11 @@ const Timer = () => {
 
     const buttonClick = (t) => {
          let totalseconds =toSeconds(t[0], t[1], 2)+ toSeconds(t[2] ,t[3], 1)+ toSeconds(t[4],t[5],0)
-         setTimers([...timers, totalseconds])
+         let hour = totalseconds/3600|0 
+        let minute = (totalseconds%3600)/60|0
+        let seconds = totalseconds%60
+        
+         setTimers([...timers, {title: (hour > 0 && hour + "h ") + (minute > 0 && minute + "m ") + seconds+"s Timer", left:totalseconds, enabled: null}])
          handleAddtimer()
     }
 
@@ -96,12 +100,34 @@ const TimerHome = ({timers , onClick}) => {
 export default Timer
 
 const Card = ({timer}) => {
-    let hour = timer/3600|0 
-    let minute = (timer%3600)/60|0
-    let seconds = timer%60
+    const [left, setLeft] = useState(timer.left)
+    let hour = left/3600|0 
+    let minute = (left%3600)/60|0
+    let seconds = left%60
+    timer.left = left
+
+    useEffect(() => {
+            if (!timer.enabled) {
+            (function timerFn() {
+                console.log(timer.left)
+
+                if (timer.left <= 0) {
+                    clearInterval(timer.enabled)
+                } else {
+                    setLeft(prevTime => prevTime - 1)
+                    timer.enabled = setTimeout(timerFn,1000)
+                }
+                
+            })();
+            console.log(timer)
+        } 
+
+
+    }, [])
+    
     return <div className='m-2 bg-slate-200 border-2 border-gray-300 p-2 rounded-lg'>
         <div  className='flex justify-between' >
-            <div className='font-medium text-xl'>{hour> 0 && hour + "h "}{minute > 0 && minute + "m "}{seconds}s</div>
+            <div className='font-medium text-xl'>{timer.title}</div>
             <div className=' self-end'>
                     <button type="button" class= "justify-center h-5 w-5 text-black border-black hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 rounded-full text-sm item-centre inline-flex   dark:hover:bg-blue-700 dark:focus:ring-blue-800" >
                         <div className='material-icons bg-slate-500 rounded-full w-6 text-white text-sm'>close</div>
