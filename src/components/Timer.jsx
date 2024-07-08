@@ -15,7 +15,7 @@ const Timer = () => {
         let minute = (totalseconds%3600)/60|0
         let seconds = totalseconds%60
         
-         setTimers([...timers, {title: (hour > 0 && hour + "h ") + (minute > 0 && minute + "m ") + seconds+"s Timer", left:totalseconds, enabled: null}])
+         setTimers([...timers, {title: (hour > 0 && hour + "h ") + (minute > 0 && minute + "m ") + seconds+"s Timer",totalseconds: totalseconds, left:totalseconds, enabled: null}])
          handleAddtimer()
     }
 
@@ -101,26 +101,31 @@ export default Timer
 
 const Card = ({timer}) => {
     const [left, setLeft] = useState(timer.left)
+    const [enabled,setEnabled] = useState(timer.enabled)
     let hour = left/3600|0 
     let minute = (left%3600)/60|0
     let seconds = left%60
     timer.left = left
-
+    timer.enabled = enabled
+    
     useEffect(() => {
-            if (!timer.enabled) {
+             
             (function timerFn() {
-                console.log(timer.left)
+                if (!timer.enabled){
 
                 if (timer.left <= 0) {
-                    clearInterval(timer.enabled)
+                    clearInterval(enabled)
+                    setEnabled(null)
                 } else {
                     setLeft(prevTime => prevTime - 1)
                     timer.enabled = setTimeout(timerFn,1000)
+                    setEnabled(timer.enabled)
                 }
+            }
                 
             })();
             console.log(timer)
-        } 
+        
 
 
     }, [])
@@ -143,16 +148,17 @@ const Card = ({timer}) => {
                     text={"+1:00"}
                 />
                 <Button 
-                    text={"pause"}
+                    icon={enabled ? "pause" : "play_arrow"}
+                    onClick={() => !enabled && setLeft(timer.totalseconds)}
                 />
             </div>
         </div>
         
     </div>
 }
-const Button = ({ text, onClick}) => {
+const Button = ({ text = null, icon = null, onClick}) => {
     return (
-      <button onClick={onClick} className=' border text-lg font-normal rounded-3xl text-center content-center h-16 w-20 text-white bg-slate-400 hover:bg-slate-600 '>{text}</button>
+      <button onClick={onClick} className={(icon && "material-icons") + ' border text-lg font-normal rounded-3xl text-center content-center h-16 w-20 text-white bg-slate-400 hover:bg-slate-600 '}>{text ? text : icon ? icon : "???"}</button>
     )
   }
 
