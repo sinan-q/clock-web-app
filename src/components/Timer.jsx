@@ -83,9 +83,9 @@ const TimerAdd = ({setTimers}) => {
 
 const TimerHome = ({timers , onClick}) => {
     return (
-        <>
-            {timers.map((timer) => 
+        <div className="overflow-auto mb-16">            {timers.map((timer, index) => 
                 <Card
+                    key={index}
                     timer={timer}
                 />
             )}
@@ -93,7 +93,7 @@ const TimerHome = ({timers , onClick}) => {
                 icon={"add"}
                 onClic={onClick}
             />
-        </>
+        </div>
     )
 }
 
@@ -162,11 +162,11 @@ const Card = ({timer}) => {
                 <button onClick={resetTimer}  className=" material-icons mt-2">restart_alt</button>
             </div>
             <div className="flex flex-col justify-center ml-4">
-                <Button 
+                <RectangleButton 
                     text={"+1:00"}
                     onClick={() => setLeft(prev => prev + 60)}
                 />
-                <Button 
+                <RectangleButton 
                     icon={enabled ? "pause" : "play_arrow"}
                     onClick={() => enabled ? setEnable(null) : timerFn()}
                 />
@@ -175,7 +175,7 @@ const Card = ({timer}) => {
         
     </div>
 }
-const Button = ({ text = null, icon = null, onClick}) => {
+const RectangleButton = ({ text = null, icon = null, onClick}) => {
     return (
       <button onClick={onClick} className={(icon && "material-icons") + ' border text-lg font-normal rounded-3xl text-center content-center h-16 w-20 text-white bg-slate-400 hover:bg-slate-600 '}>{text ? text : icon ? icon : "???"}</button>
     )
