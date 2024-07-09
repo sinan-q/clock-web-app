@@ -10,12 +10,12 @@ const Timer = () => {
     const handleAddtimer = () => setAddTimer(!addTimer)
 
     const buttonClick = (t) => {
-         let totalseconds =toSeconds(t[0], t[1], 2)+ toSeconds(t[2] ,t[3], 1)+ toSeconds(t[4],t[5],0)
-         let hour = totalseconds/3600|0 
+        let totalseconds =toSeconds(t[0], t[1], 2)+ toSeconds(t[2] ,t[3], 1)+ toSeconds(t[4],t[5],0)
+        let hour = totalseconds/3600|0 
         let minute = (totalseconds%3600)/60|0
         let seconds = totalseconds%60
         
-         setTimers([...timers, {title: (hour > 0 && hour + "h ") + (minute > 0 && minute + "m ") + seconds+"s Timer",totalseconds: totalseconds, left:totalseconds, enabled: null}])
+         setTimers([...timers, {title: (hour > 0 ? hour + "h " : "") + (minute > 0 ? minute + "m " : "") + seconds+"s Timer",totalseconds: totalseconds, left:totalseconds, enabled: null}])
          handleAddtimer()
     }
 
