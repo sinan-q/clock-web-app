@@ -4,6 +4,7 @@ import Clock from './Clock'
 import Timer from './Timer'
 import Stopwatch from './Stopwatch';
 import Alarm from './Alarm';
+import Bedtime from './Bedtime';
 
 const PageRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const PageRoutes = () => {
         <Route path='/clock' element={ <Clock /> } />
         <Route path='/timer' element={ <Timer /> }/>
         <Route path='/stopwatch' element={ <Stopwatch/>} />
+        <Route path='/bedtime' element={ <Bedtime/>} />
       </Routes>
   )
 }
