@@ -107,11 +107,12 @@ const Card = ({timer}) => {
     let seconds = left%60
     timer.left = left
     const resetTimer = () => {
-        timerFn(false)
-        setLeft(timer.totalseconds)    }
+        setEnable(null)
+        setLeft(timer.totalseconds)    
+    }
     const setEnable = (val) => {
         
-
+        console.log(val)
         setEnabled(prev =>{
             !val && clearTimeout(prev);
             timer.enabled = val
@@ -120,17 +121,15 @@ const Card = ({timer}) => {
 
 
     }
-    const timerFn = (enable = true, k=0) => {
-        console.log(k)
-        if(!enable) setEnable(null)
-        else if(enable && timer.left <= 0) {
+    const timerFn = (k=0) => {
+        if( timer.left <= 0) {
             timer.left = timer.totalseconds + 1
             setLeft(timer.left)
             timerFn(true,1)
             
         } 
 
-        else if (enable && timer.left > 0){
+        else{
             let time = timer.left -1
             if(time > 0) setEnable(setTimeout(() => timerFn(true, 2),1000))
             else setEnable(null)
@@ -168,7 +167,7 @@ const Card = ({timer}) => {
                 />
                 <Button 
                     icon={enabled ? "pause" : "play_arrow"}
-                    onClick={() => timerFn(!Boolean(enabled), 5)}
+                    onClick={() => enabled ? setEnable(null) : timerFn()}
                 />
             </div>
         </div>
