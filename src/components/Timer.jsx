@@ -108,26 +108,29 @@ const Card = ({timer}) => {
     timer.left = left
     timer.enabled = enabled
     
-    useEffect(() => {
-             
-            (function timerFn() {
-                if (!timer.enabled){
-
-                if (timer.left <= 0) {
-                    clearInterval(enabled)
-                    setEnabled(null)
-                } else {
-                    setLeft(prevTime => prevTime - 1)
-                    timer.enabled = setTimeout(timerFn,1000)
-                    setEnabled(timer.enabled)
-                }
-            }
+    const setEnable = (val) => {
+        clearTimeout(enabled);
+        setEnabled(val)
+    }
+    const timerFn = (enable = true) => {
                 
-            })();
-            console.log(timer)
+
+        if (timer.left > 0 && enable){
+            setLeft(prevTime => prevTime - 1)
+            timer.enabled = setTimeout(() => timerFn(1),1000)
+            setEnable(timer.enabled)
+        }
+        else {
+            setEnable(null)
+        } 
+
         
-
-
+        
+        
+    }
+    useEffect(() => {
+        !enabled && timerFn(2)
+        return () => clearTimeout(timer.enabled)
     }, [])
     
     return <div className='m-2 bg-slate-200 border-2 border-gray-300 p-2 rounded-lg'>
@@ -149,7 +152,7 @@ const Card = ({timer}) => {
                 />
                 <Button 
                     icon={enabled ? "pause" : "play_arrow"}
-                    onClick={() => !enabled && setLeft(timer.totalseconds)}
+                    onClick={() => timerFn(!enabled)}
                 />
             </div>
         </div>
