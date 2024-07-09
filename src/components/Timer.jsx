@@ -106,7 +106,9 @@ const Card = ({timer}) => {
     let minute = (left%3600)/60|0
     let seconds = left%60
     timer.left = left
-
+    const resetTimer = () => {
+        timerFn(false)
+        setLeft(timer.totalseconds)    }
     const setEnable = (val) => {
         
 
@@ -120,15 +122,13 @@ const Card = ({timer}) => {
     }
     const timerFn = (enable = true, k=0) => {
         console.log(k)
-        if(!enable && timer.left <= 0) setEnable(null)
+        if(!enable) setEnable(null)
         else if(enable && timer.left <= 0) {
-            
-                setLeft(timer.totalseconds + 1)
-                timer.left = timer.totalseconds + 1
-                timerFn(true,1)
+            timer.left = timer.totalseconds + 1
+            setLeft(timer.left)
+            timerFn(true,1)
             
         } 
-        else if(!enable && timer.left > 0) setEnable(null)
 
         else if (enable && timer.left > 0){
             let time = timer.left -1
@@ -159,7 +159,8 @@ const Card = ({timer}) => {
             </div>
         <div className="flex text-center justify-around my-2">
             <div className="border-4 border-gray-400 w-40 h-40 content-center rounded-full  ">
-                <div className=" text-center text-5xl">{hour > 0 && hour + ":"}{ minute > 0 && minute + ":"}{seconds}</div>
+                <div className=" text-center mt-2 text-5xl">{hour > 0 && hour + ":"}{ minute > 0 && minute + ":"}{seconds}</div>
+                <button onClick={resetTimer}  className=" material-icons mt-2">restart_alt</button>
             </div>
             <div className="flex flex-col justify-center ml-4">
                 <Button 
