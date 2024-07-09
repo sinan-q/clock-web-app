@@ -164,6 +164,7 @@ const Card = ({timer}) => {
             <div className="flex flex-col justify-center ml-4">
                 <Button 
                     text={"+1:00"}
+                    onClick={() => setLeft(prev => prev + 60)}
                 />
                 <Button 
                     icon={enabled ? "pause" : "play_arrow"}
