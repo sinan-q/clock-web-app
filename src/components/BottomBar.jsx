@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const BottomBar = () => {
   return (
-    <div className='fixed bg-slate-200 bottom-11 w-80  pt-1 px-5'>
+    <div className='relative bg-slate-200 bottom pt-1 '>
       <div className="flex pb-4 justify-center">
             <BottomBarElement
               icon={"alarm"}
