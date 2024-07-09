@@ -106,31 +106,46 @@ const Card = ({timer}) => {
     let minute = (left%3600)/60|0
     let seconds = left%60
     timer.left = left
-    timer.enabled = enabled
-    
-    const setEnable = (val) => {
-        clearTimeout(enabled);
-        setEnabled(val)
-    }
-    const timerFn = (enable = true) => {
-                
 
-        if (timer.left > 0 && enable){
-            setLeft(prevTime => prevTime - 1)
-            timer.enabled = setTimeout(() => timerFn(1),1000)
-            setEnable(timer.enabled)
-        }
-        else {
-            setEnable(null)
+    const setEnable = (val) => {
+        
+
+        setEnabled(prev =>{
+            !val && clearTimeout(prev);
+            timer.enabled = val
+            return val
+        })
+
+
+    }
+    const timerFn = (enable = true, k=0) => {
+        console.log(k)
+        if(!enable && timer.left <= 0) setEnable(null)
+        else if(enable && timer.left <= 0) {
+            
+                setLeft(timer.totalseconds + 1)
+                timer.left = timer.totalseconds + 1
+                timerFn(true,1)
+            
         } 
+        else if(!enable && timer.left > 0) setEnable(null)
+
+        else if (enable && timer.left > 0){
+            let time = timer.left -1
+            if(time > 0) setEnable(setTimeout(() => timerFn(true, 2),1000))
+            else setEnable(null)
+            
+            setLeft(time)
+            
+        }
 
         
         
         
     }
     useEffect(() => {
-        !enabled && timerFn(2)
-        return () => clearTimeout(timer.enabled)
+    let k = setTimeout(() => timerFn(k = 4),1000)
+        return () => clearTimeout(k)
     }, [])
     
     return <div className='m-2 bg-slate-200 border-2 border-gray-300 p-2 rounded-lg'>
@@ -152,7 +167,7 @@ const Card = ({timer}) => {
                 />
                 <Button 
                     icon={enabled ? "pause" : "play_arrow"}
-                    onClick={() => timerFn(!enabled)}
+                    onClick={() => timerFn(!Boolean(enabled), 5)}
                 />
             </div>
         </div>
