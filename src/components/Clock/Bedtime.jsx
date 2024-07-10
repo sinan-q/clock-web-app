@@ -1,5 +1,5 @@
 import React from 'react'
-import svg from '../assets/alarm_bedtime.gif'
+import svg from '../../assets/alarm_bedtime.gif'
 
 const Bedtime = () => {
   return (

@@ -1,25 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 
-const titles = {
-  "/alarm": "Alarm",
-  "/clock": "Clock",
-  "/timer": "Timer",
-  "/stopwatch": "Stopwatch",
-  "/bedtime" :"Bedtime",
-  '/settings' : "Settings",
-  "/about" : "About"
-};
-
-const TopAppBar = () => {
-  const location = useLocation();
-  const [title, setTitle] = useState(titles["/"]);
-
-  useEffect(() => {
-    setTitle(titles[location.pathname]);
-  }, [location.pathname]);
+const TopAppBar = ({title}) => {
 
   return (
     <div className='flex justify-between pt-4 pb-1 px-4'>

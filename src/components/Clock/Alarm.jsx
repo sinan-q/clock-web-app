@@ -1,5 +1,5 @@
 import React,{useState , useEffect} from 'react'
-import FAB from './FAB'
+import FAB from '../FAB'
 
 const Alarm = () => {
     const [dialogState, setDialogState] = useState(false);

@@ -1,20 +1,11 @@
 import React from 'react'
 import { Routes, Route ,Navigate } from 'react-router-dom';
-import Clock from './Clock'
-import Timer from './Timer'
-import Stopwatch from './Stopwatch';
-import Alarm from './Alarm';
-import Bedtime from './Bedtime';
+import ClockApp from './Clock/App';
 
 const PageRoutes = () => {
   return (
     <Routes>
-        <Route exact path="/" element={<Navigate replace  to="/alarm" />} />
-        <Route path="/alarm" element={ <Alarm/> } />
-        <Route path='/clock' element={ <Clock /> } />
-        <Route path='/timer' element={ <Timer /> }/>
-        <Route path='/stopwatch' element={ <Stopwatch/>} />
-        <Route path='/bedtime' element={ <Bedtime/>} />
+        <Route path='/clock/*' element={ <ClockApp /> } />
       </Routes>
   )
 }

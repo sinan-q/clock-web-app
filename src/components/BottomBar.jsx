@@ -2,39 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 
-const BottomBar = () => {
+const BottomBar = ({bottomNavElements = null ,routes = null , parent}) => {
   return (
     <div className='relative bg-slate-200 bottom pt-1 '>
       <div className="flex pb-4 justify-center">
-            <BottomBarElement
-              icon={"alarm"}
-              label={"Alarm"}
-              route = {"/alarm"}
-            />
-            <BottomBarElement
-              icon={"schedule"}
-              label={"Clock"}
-              route = {"/clock"}
-
-            />
-            <BottomBarElement
-              icon={"hourglass_empty"}
-              label={"Timer"}
-              route = {"/timer"}
-
-            />
-            <BottomBarElement
-              icon={"timer"}
-              label={"StopWatch"}
-              route = {"/stopwatch"}
-
-            />
-            <BottomBarElement
-              icon={"bedtime"}
-              label={"BedTime"}
-              route = {"/bedtime"}
-
-            />
+            {bottomNavElements && bottomNavElements.map((value) => {
+              let element = routes.get(value)
+              return <BottomBarElement
+                icon={element.icon}
+                label={element.title}
+                route = {parent+value}
+              />
+            })}
+            
       </div>
       <div className='w-full h-1 pb-3'>
         <div className="w-24 h-1 rounded-xl m-auto bg-black "> </div>

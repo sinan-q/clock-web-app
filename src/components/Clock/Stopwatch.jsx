@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import FAB from './FAB'
+import FAB from '../FAB'
 
 const Stopwatch = () => { 
     const [timer, setTimer] = useState(0)

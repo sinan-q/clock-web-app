@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import FAB from './FAB'
+import FAB from '../FAB'
 import moment from 'moment/moment';
 
 const Timer = () => {
