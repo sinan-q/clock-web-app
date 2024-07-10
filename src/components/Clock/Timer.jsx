@@ -83,7 +83,8 @@ const TimerAdd = ({setTimers}) => {
 
 const TimerHome = ({timers , onClick}) => {
     return (
-        <div className="overflow-auto mb-16">            {timers.map((timer, index) => 
+        <div className="overflow-auto flex-1 mb-16">
+            {timers.map((timer, index) => 
                 <Card
                     key={index}
                     timer={timer}
