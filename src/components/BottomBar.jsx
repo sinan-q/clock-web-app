@@ -6,9 +6,10 @@ const BottomBar = ({bottomNavElements = null ,routes = null , parent}) => {
   return (
     <div className='relative bg-slate-200 bottom pt-1 '>
       <div className="flex pb-4 justify-center">
-            {bottomNavElements && bottomNavElements.map((value) => {
+            {bottomNavElements && bottomNavElements.map((value, index) => {
               let element = routes.get(value)
               return <BottomBarElement
+                key={index}
                 icon={element.icon}
                 label={element.title}
                 route = {parent+value}
