@@ -5,10 +5,11 @@ import CalculatorApp from './Calculator/App';
 
 const PageRoutes = () => {
   return (
-    <Routes>
+  <Routes>
+        <Route exact path="/" element={<Navigate replace  to="/clock" />} />
         <Route path='/clock/*' element={ <ClockApp /> } />
         <Route path='/calculator' element={ <CalculatorApp /> } />
-      </Routes>
+      </Routes>    
   )
 }
 
