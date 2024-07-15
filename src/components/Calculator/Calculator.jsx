@@ -9,7 +9,23 @@ const Calculator = () => {
     let x = number1.split("")
     isOperator(x.at(-1)) && x.pop()
     x = pi(x)
-    x = x.map((num) =>  num=="x"? "*" : num=="^"? "**":num)
+    x = x.map((num) => {switch (num) {
+      case "x":
+        return "*"
+      case "^":
+        return "**"
+      
+      default:
+        return num;
+    }})
+    function factorialize(num) {
+      if (num === 0 || num === 1)
+        return 1;
+      for (var i = num - 1; i >= 1; i--) {
+        num *= i;
+      }
+      return num;
+    }
     console.log(pi(x))
     setResult(eval(x.join("")))
   }
@@ -33,7 +49,7 @@ const Calculator = () => {
 
   return (
     <div className=' flex-1'>
-        <div className=" h-44 w-34 bg-slate-200 rounded-ee-xl rounded-es-xl">
+        <div className=" h-44 w-34 text-end bg-slate-200 rounded-ee-xl rounded-es-xl">
           <div className="text-end material-icons pt-4 p-2">:</div>
           <div className="font-medium text-6xl mx-2 overflow-x-auto text-end">{number1}</div>
           <div className="py-2 w-18 ps-3 overflow-clip   font-medium text-4xl mx-2 text-end">{result}</div>
@@ -46,7 +62,10 @@ const Calculator = () => {
               })}>π</button>
             <button onClick={() => setNumber1(pre => {
                if(pre && !isOperator(pre.at(-1))) return pre + "^"; else return pre})}>^</button>
-            <button>!</button>
+            <button  onClick={() => setNumber1(pre => {
+              if(pre && !pre.endsWith("!")) return pre.concat("!"); 
+              else return pre
+              })}>!</button>
             <button className='material-icons bg-slate-300 rounded-full'>keyboard_arrow_down</button>
             
         </div>
