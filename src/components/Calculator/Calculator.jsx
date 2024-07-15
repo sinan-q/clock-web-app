@@ -6,32 +6,49 @@ const Calculator = () => {
   const [result, setResult] = useState(null)
 
   const sum = () => {
-    let x = number1.replaceAll("x","*")
-    x = number1.replaceAll("^","**")
-
+    let x = number1.split("")
+    isOperator(x.at(-1)) && x.pop()
+    x = pi(x)
+    x = x.map((num) =>  num=="x"? "*" : num=="^"? "**":num)
     console.log(pi(x))
-    setResult(eval(x))
+    setResult(eval(x.join("")))
   }
 
   const pi = (string) => {
+    console.log(string)
     for (let i = 0; i < string.length; i++) {
-      const element = string[i];
-      if (element === "π") {
+      let element = string[i];
+      if (element == "π") {
+        console.log(i)
         if (i!=0) 
-          if( string[i-1]== "*") {
-            if( string[i+1]== "*") {
+          if( isOperator(string[i-1])) {
+            if( isOperator(string[i+1])) {
               string.splice(i,1,"Math.PI")
             } else if (i+1<string.length) {
               string.splice(i,1,"Math.PI*")
-            }
-          } else if( string[i+1]== "*") {
+            } else string.splice(i,1,"Math.PI")
+          } else if(isOperator(string[i+1])) {
               string.splice(i,1,"*Math.PI")
             } else if (i+1<string.length) {
+              string.splice(i,1,"*Math.PI*")
+            } else string.splice(i,1,"*Math.PI")
+
+          else {
+            if(isOperator(string[i+1])) {
+              string.splice(i,1,"Math.PI")
+            } else if (i+1<string.length) {
               string.splice(i,1,"Math.PI*")
-            }
+            } else string.splice(i,1,"Math.PI")
+          }
       }
       
     }
+    return string
+  }
+
+  const isOperator = (element) => {
+    console.log(element)
+    return ["/", "x" , "+" ,"^" , "-" , "!"].includes(element)
   }
 
   return (
@@ -44,10 +61,11 @@ const Calculator = () => {
         <div className="flex justify-between mt-4 mx-6">
             <button>√</button>
             <button onClick={() => setNumber1(pre => {
-              if(pre && !pre.endsWith("x")) return pre.concat("π"); 
-              else return pre
+              if( !pre.endsWith("π")) return pre.concat("π"); 
+              else return pre.concat("xπ")
               })}>π</button>
-            <button onClick={() => setNumber1(pre => pre && pre + "^")}>^</button>
+            <button onClick={() => setNumber1(pre => {
+               if(pre && !isOperator(pre.at(-1))) return pre + "^"; else return pre})}>^</button>
             <button>!</button>
             <button className='material-icons bg-slate-300 rounded-full'>keyboard_arrow_down</button>
             
