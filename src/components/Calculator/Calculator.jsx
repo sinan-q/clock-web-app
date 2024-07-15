@@ -15,31 +15,11 @@ const Calculator = () => {
   }
 
   const pi = (string) => {
-    console.log(string)
     for (let i = 0; i < string.length; i++) {
       let element = string[i];
       if (element == "π") {
-        console.log(i)
-        if (i!=0) 
-          if( isOperator(string[i-1])) {
-            if( isOperator(string[i+1])) {
-              string.splice(i,1,"Math.PI")
-            } else if (i+1<string.length) {
-              string.splice(i,1,"Math.PI*")
-            } else string.splice(i,1,"Math.PI")
-          } else if(isOperator(string[i+1])) {
-              string.splice(i,1,"*Math.PI")
-            } else if (i+1<string.length) {
-              string.splice(i,1,"*Math.PI*")
-            } else string.splice(i,1,"*Math.PI")
-
-          else {
-            if(isOperator(string[i+1])) {
-              string.splice(i,1,"Math.PI")
-            } else if (i+1<string.length) {
-              string.splice(i,1,"Math.PI*")
-            } else string.splice(i,1,"Math.PI")
-          }
+        let add = `${i!==0? !isOperator(string[i-1])?"*":"":""}Math.PI${!isOperator(string[i+1]) && i+1<string.length ?"*":""}`
+        string.splice(i,1,add)
       }
       
     }
