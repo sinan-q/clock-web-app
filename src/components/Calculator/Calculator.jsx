@@ -2,25 +2,58 @@ import React, {useState} from 'react'
 
 const Calculator = () => {
   const [number1, setNumber1] = useState("")
-  const [number2, setNumber2] = useState(null)
+  let number = ""
   const [result, setResult] = useState(null)
+
+  const sum = () => {
+    let x = number1.replaceAll("x","*")
+    x = number1.replaceAll("^","**")
+
+    console.log(pi(x))
+    setResult(eval(x))
+  }
+
+  const pi = (string) => {
+    for (let i = 0; i < string.length; i++) {
+      const element = string[i];
+      if (element === "π") {
+        if (i!=0) 
+          if( string[i-1]== "*") {
+            if( string[i+1]== "*") {
+              string.splice(i,1,"Math.PI")
+            } else if (i+1<string.length) {
+              string.splice(i,1,"Math.PI*")
+            }
+          } else if( string[i+1]== "*") {
+              string.splice(i,1,"*Math.PI")
+            } else if (i+1<string.length) {
+              string.splice(i,1,"Math.PI*")
+            }
+      }
+      
+    }
+  }
 
   return (
     <div className=' flex-1'>
-        <div className=" h-44 bg-slate-200 rounded-ee-xl rounded-es-xl">
-          <div className="text-8xl pt-4 mx-2 overflow-auto text-end">{number1}</div>
-          <div className=" text-end">{result}</div>
+        <div className=" h-44 w-34 bg-slate-200 rounded-ee-xl rounded-es-xl">
+          <div className="text-end material-icons pt-4 p-2">:</div>
+          <div className="font-medium text-6xl mx-2 overflow-x-auto text-end">{number1}</div>
+          <div className="py-2 w-18 ps-3 overflow-clip   font-medium text-4xl mx-2 text-end">{result}</div>
         </div>
         <div className="flex justify-between mt-4 mx-6">
             <button>√</button>
-            <button>π</button>
-            <button>^</button>
+            <button onClick={() => setNumber1(pre => {
+              if(pre && !pre.endsWith("x")) return pre.concat("π"); 
+              else return pre
+              })}>π</button>
+            <button onClick={() => setNumber1(pre => pre && pre + "^")}>^</button>
             <button>!</button>
             <button className='material-icons bg-slate-300 rounded-full'>keyboard_arrow_down</button>
             
         </div>
         <div className=" grid grid-cols-4 place-items-center mt-6 mx-2">
-            <TimerButton text={"AC"} onClick={() => setNumber1("")} />
+            <TimerButton text={"AC"} onClick={() => {setNumber1(""); setResult(null)}} />
             <TimerButton text={"( )"} onClick={() => setNumber1(pre => pre + "9")} />
             <TimerButton text={"%"} onClick={() => setNumber1(pre => pre + "%")} />
             <TimerButton text={"/"} onClick={() => setNumber1(pre => pre + "/")} />
@@ -34,15 +67,15 @@ const Calculator = () => {
             <TimerButton text={"4"} onClick={() => setNumber1(pre => pre + "4")} />
             <TimerButton text={"5"} onClick={() => setNumber1(pre => pre + "5")} />
             <TimerButton text={"6"} onClick={() => setNumber1(pre => pre + "6")} />
-            <TimerButton text={"-"} onClick={() => setNumber1(pre => !pre.endsWith("x") && pre + "-")} />
+            <TimerButton text={"-"} onClick={() => setNumber1(pre => !pre.endsWith("-") && pre + "-")} />
             <TimerButton text={"1"} onClick={() => setNumber1(pre => pre + "1")} />
             <TimerButton text={"2"} onClick={() => setNumber1(pre => pre + "2")} />
             <TimerButton text={"3"} onClick={() => setNumber1(pre => pre + "3")} />
-            <TimerButton text={"+"} onClick={() => setNumber1(pre => !pre.endsWith("x") && pre + "+")} />
+            <TimerButton text={"+"} onClick={() => setNumber1(pre => !pre.endsWith("+") && pre + "+")} />
             <TimerButton text={"0"} onClick={() => setNumber1(pre => pre + "0")} />
-            <TimerButton text={"."} onClick={() => setNumber1(pre => !pre.endsWith("x") && pre + ".")} />
+            <TimerButton text={"."} onClick={() => setNumber1(pre => !pre.endsWith(".") && pre + ".")} />
             <TimerButton text={"<"} onClick={() => setNumber1(prev => prev.substring(0, prev.length -1))} />
-            <TimerButton text={"="} />
+            <TimerButton text={"="} onClick={sum} />
 
         </div>
     </div>
