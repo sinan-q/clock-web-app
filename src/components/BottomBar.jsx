@@ -17,9 +17,7 @@ const BottomBar = ({bottomNavElements = null ,routes = null , parent}) => {
             })}
             
       </div>
-      <div className='w-full h-1 pb-3'>
-        <div className="w-24 h-1 rounded-xl m-auto bg-black "> </div>
-      </div>
+      <NavBar/>
             
             
 
@@ -38,4 +36,13 @@ const BottomBarElement = ({icon, label, route}) => {
 }
 
 export default BottomBar
+
+export const NavBar = ({bgColor}) => {
+  return (
+    <div className='w-full h-1 pb-3'>
+        <div className="w-24 h-1 rounded-xl m-auto bg-black "> </div>
+    </div>
+  )
+}
+
 
