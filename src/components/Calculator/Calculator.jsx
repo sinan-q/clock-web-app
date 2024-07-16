@@ -54,43 +54,33 @@ const Calculator = () => {
           <div className="font-medium text-6xl mx-2 overflow-x-auto text-end">{number1}</div>
           <div className="py-2 w-18 ps-3 overflow-clip   font-medium text-4xl mx-2 text-end">{result}</div>
         </div>
-        <div className="flex justify-between mt-4 mx-6">
+        <div className="flex text-xl justify-between mt-4 mx-6">
             <button>√</button>
-            <button onClick={() => setNumber1(pre => {
-              if( !pre.endsWith("π")) return pre.concat("π"); 
-              else return pre.concat("xπ")
-              })}>π</button>
-            <button onClick={() => setNumber1(pre => {
-               if(pre && !isOperator(pre.at(-1))) return pre + "^"; else return pre})}>^</button>
-            <button  onClick={() => setNumber1(pre => {
-              if(pre && !pre.endsWith("!")) return pre.concat("!"); 
-              else return pre
-              })}>!</button>
+            <button onClick={() => setNumber1(pre => !pre.endsWith("π")? pre.concat("π"): pre.concat("xπ"))}>π</button>
+            <button onClick={() => setNumber1(pre => pre && !isOperator(pre.at(-1)) ?pre + "^": pre)}>^</button>
+            <button  onClick={() => setNumber1(pre => pre && !pre.endsWith("!")? pre.concat("!"): pre)}>!</button>
             <button className='material-icons bg-slate-300 rounded-full'>keyboard_arrow_down</button>
             
         </div>
         <div className=" grid grid-cols-4 place-items-center mt-6 mx-2">
             <TimerButton text={"AC"} onClick={() => {setNumber1(""); setResult(null)}} />
-            <TimerButton text={"( )"} onClick={() => setNumber1(pre => pre + "9")} />
+            <TimerButton text={"( )"} onClick={() => setNumber1(pre => pre + "(")} />
             <TimerButton text={"%"} onClick={() => setNumber1(pre => pre + "%")} />
-            <TimerButton text={"/"} onClick={() => setNumber1(pre => pre + "/")} />
+            <TimerButton text={"/"} onClick={() => setNumber1(pre => pre && !pre.endsWith("/")?  pre.concat("/"): pre)} />
             <TimerButton text={"7"} onClick={() => setNumber1(pre => pre + "7")} />
             <TimerButton text={"8"} onClick={() => setNumber1(pre => pre + "8")} />
             <TimerButton text={"9"} onClick={() => setNumber1(pre => pre + "9")} />
-            <TimerButton text={"X"} onClick={() => setNumber1(pre => {
-              if(pre && !pre.endsWith("x")) return pre.concat("x"); 
-              else return pre
-              })} />
+            <TimerButton text={"X"} onClick={() => setNumber1(pre => pre && !pre.endsWith("x")?  pre.concat("x"): pre)} />
             <TimerButton text={"4"} onClick={() => setNumber1(pre => pre + "4")} />
             <TimerButton text={"5"} onClick={() => setNumber1(pre => pre + "5")} />
             <TimerButton text={"6"} onClick={() => setNumber1(pre => pre + "6")} />
-            <TimerButton text={"-"} onClick={() => setNumber1(pre => !pre.endsWith("-") && pre + "-")} />
+            <TimerButton text={"-"} onClick={() => setNumber1(pre => !pre.endsWith("-") ? pre + "-": pre)} />
             <TimerButton text={"1"} onClick={() => setNumber1(pre => pre + "1")} />
             <TimerButton text={"2"} onClick={() => setNumber1(pre => pre + "2")} />
             <TimerButton text={"3"} onClick={() => setNumber1(pre => pre + "3")} />
-            <TimerButton text={"+"} onClick={() => setNumber1(pre => !pre.endsWith("+") && pre + "+")} />
+            <TimerButton text={"+"} onClick={() => setNumber1(pre => !pre.endsWith("+") ? pre + "+": pre)} />
             <TimerButton text={"0"} onClick={() => setNumber1(pre => pre + "0")} />
-            <TimerButton text={"."} onClick={() => setNumber1(pre => !pre.endsWith(".") && pre + ".")} />
+            <TimerButton text={"."} onClick={() => setNumber1(pre => !pre.endsWith(".") ? pre + ".": pre)} />
             <TimerButton text={"<"} onClick={() => setNumber1(prev => prev.substring(0, prev.length -1))} />
             <TimerButton text={"="} onClick={sum} />
 
