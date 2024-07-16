@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="flex-1 bg-[url('assets\boliviainteligente-VbAk6ZP_Wt8-unsplash.jpg')] ">
         <div className=' absolute  bottom-0 justify-end m-2    '>
-        <div className="bottomAppBar flex gap-4 bottom-0 m-2">
+        <div className="bottomAppBar flex gap-4 bottom-0 mb-12 m-2">
             <AppIcon
              src={"./src/assets/google-calculator.svg"}
              name={"Calculator"}

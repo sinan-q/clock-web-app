@@ -22,6 +22,7 @@ const App = () => {
     <div class=" bg-white box-content border-4 w-80 relative my-10 border-cyan-900 flex flex-col">
       <StatusBar />
       <PageRoutes/>
+      
     </div>
     </div>
   )

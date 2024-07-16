@@ -69,7 +69,7 @@ const Calculator = () => {
             <button className='material-icons bg-slate-300 rounded-full'>keyboard_arrow_down</button>
             
         </div>
-        <div className=" grid grid-cols-4 place-items-center mt-6 mx-2">
+        <div className=" grid grid-cols-4  place-items-center mt-6 mx-2">
             <TimerButton text={"AC"} onClick={() => {setNumber1(""); setResult(null)}} />
             <TimerButton text={"( )"} onClick={() => setNumber1(pre => pre + "9")} />
             <TimerButton text={"%"} onClick={() => setNumber1(pre => pre + "%")} />
@@ -103,6 +103,6 @@ export default Calculator
 
 const TimerButton = ({ text, onClick, bgcolor = "bg-slate"}) => {
     return (
-      <button onClick={onClick} className={`border text-3xl font-normal rounded-full text-center content-center h-[4.5rem] w-[4.5rem] text-white ${bgcolor}-400 hover:${bgcolor}-600 active:text-2xl `}>{text}</button>
+      <button onClick={onClick} className={` text-3xl font-normal rounded-full text-center content-center h-[4.25rem] w-[4.25rem] text-white ${bgcolor}-400 hover:${bgcolor}-600 active:text-2xl `}>{text}</button>
     )
   }
