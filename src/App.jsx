@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 
 
 import StatusBar from './components/StatusBar'
-import BottomBar from './components/BottomBar'
 import PageRoutes from './components/PageRoutes'
 
 
@@ -22,7 +21,6 @@ const App = () => {
     <div class=" bg-white box-content border-4 w-80 relative my-10 border-cyan-900 flex flex-col">
       <StatusBar />
       <PageRoutes/>
-      
     </div>
     </div>
   )

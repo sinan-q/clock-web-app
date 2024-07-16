@@ -69,7 +69,7 @@ const Calculator = () => {
             <button className='material-icons bg-slate-300 rounded-full'>keyboard_arrow_down</button>
             
         </div>
-        <div className=" grid grid-cols-4  place-items-center mt-6 mx-2">
+        <div className=" grid grid-cols-4 place-items-center mt-6 mx-2">
             <TimerButton text={"AC"} onClick={() => {setNumber1(""); setResult(null)}} />
             <TimerButton text={"( )"} onClick={() => setNumber1(pre => pre + "9")} />
             <TimerButton text={"%"} onClick={() => setNumber1(pre => pre + "%")} />
